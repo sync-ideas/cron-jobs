@@ -16,7 +16,10 @@ COPY . .
 RUN npm run build
 
 # Expone el puerto en el que tu aplicación se ejecuta
-EXPOSE 8080
+EXPOSE 3000
 
 # Comando para ejecutar tu aplicación
 CMD ["npm", "start"]
+
+#  docker build -t cronjobs .
+#  docker run -p 3000:3000 cronjobs 
