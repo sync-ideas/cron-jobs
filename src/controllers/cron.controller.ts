@@ -69,7 +69,7 @@ class CronController {
 
         }
       }
-      PostgreSQL.getInstance().close()
+      //PostgreSQL.getInstance().close()
     } catch (error) {
       console.log(error)
       throw error

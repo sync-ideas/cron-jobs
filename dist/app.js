@@ -12,9 +12,20 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = __importDefault(require("express"));
+const cors_1 = __importDefault(require("cors"));
+const dotenv_1 = __importDefault(require("dotenv"));
+dotenv_1.default.config();
 const postgre_model_1 = __importDefault(require("./models/postgre.model"));
 const cron_controller_1 = __importDefault(require("./controllers/cron.controller"));
-function main() {
+const PORT = process.env.PORT || 3000;
+const app = (0, express_1.default)();
+app.use((0, cors_1.default)());
+app.use('/', express_1.default.Router().get('/', (req, res) => {
+    cron();
+    res.send('Cron working...');
+}));
+function cron() {
     return __awaiter(this, void 0, void 0, function* () {
         try {
             yield cron_controller_1.default.updateAttendance();
@@ -25,4 +36,4 @@ function main() {
         }
     });
 }
-main();
+app.listen(PORT, () => console.log(`Server running on port ${PORT}`));

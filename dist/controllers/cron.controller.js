@@ -78,7 +78,7 @@ class CronController {
                         }
                     }
                 }
-                postgre_model_1.default.getInstance().close();
+                //PostgreSQL.getInstance().close()
             }
             catch (error) {
                 console.log(error);
